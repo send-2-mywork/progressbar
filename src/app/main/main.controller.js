@@ -1,12 +1,11 @@
 (function() {
   'use strict';
 
-  angular
-    .module('progress3')
+  angular.module('progress3')
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope/*$timeout , webDevTec, toastr*/) {
+  function MainController( /*$timeout , webDevTec, toastr*/) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -14,52 +13,38 @@
     vm.creationDate = 1488393243263;
 
     // Settings
-    $scope.settings = {
+    vm.settings = {
       "buttons":[28,49,-22,-8],
       "bars":[12,54,68],
       "limit":200
     }
 
     // Default settings
-    $scope.defaults = {
+    vm.defaults = {
       barNames: [],
       limit: false
     }
-    var barLength = $scope.settings.bars.length;
+    var barLength = vm.settings.bars.length;
     if(barLength){
       for(var i=0;i<barLength; i++){
         var progressbarName = 'Progressbar#' + parseInt(i + 1);
-        $scope.defaults.barNames.push(progressbarName);
+        vm.defaults.barNames.push(progressbarName);
       }
     }
 
-    $scope.defaults.progressBarselected = $scope.defaults.barNames[0];
+    vm.defaults.progressBarselected = vm.defaults.barNames[0];
 
     // Button Click Functio
-    $scope.btnClick = function(btnVal){
-      var barName = $scope.defaults.progressBarselected;
+    vm.btnClick = function(btnVal){
+      var barName = vm.defaults.progressBarselected;
       var barProps = barName.split('#');
       var barCount = parseInt(barProps[1]) - 1;
       var newBarName = barProps[0] + '#' + barCount;
 
       var getActiveBar = document.getElementById(newBarName);
       var barInnerVal = getActiveBar.childNodes[1].innerText.split('%')[0]; // Get value
-      
-      var barStyle = getActiveBar.childNodes[1].style.width;
-      var barText = getActiveBar.childNodes[1].innerText;
       var total;
 
-      /*console.log($scope.defaults.limit);
-      if($scope.defaults.limit){
-        var temp = (parseInt(barInnerVal) + btnVal);
-        var getTotal = (temp * $scope.settings.limit) / 100;
-        console.log(getTotal);
-        //total = getTotal;
-        total = parseInt(barInnerVal) + btnVal;  
-      } else {
-        total = parseInt(barInnerVal) + btnVal;  
-      }*/
-      
       total = parseInt(barInnerVal) + btnVal;
       
       if(btnVal > 0){

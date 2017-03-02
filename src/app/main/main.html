@@ -10,22 +10,18 @@
       
       <div class="progressbar-wrapper">
         
-        <div class="progressbar" ng-repeat="bar in settings.bars track by $index" id="Progressbar#{{$index}}">
+        <div class="progressbar" ng-repeat="bar in main.settings.bars track by $index" id="Progressbar#{{$index}}">
           <div class="inner-progressbar" style="width:{{bar}}%">{{bar}}%</div>
         </div>
       </div>
       <div class="progressbar-footer">
-        <!-- <div class="col-md-12 col-sm-12">
-          <label for="limit">Enable Limit</label>
-          <input type="checkbox" name="limit" ng-model="defaults.limit"> {{settings.limit}}
-        </div> -->
         <div class="col-md-4 col-sm-4">
-          <select ng-init="defaults.progressBarselected = defaults.barNames[0]" ng-model="defaults.progressBarselected" class="progressbar-dropdown">
-            <option ng-repeat="option in defaults.barNames track by $index" val="{{option}}">{{option}}</option>
+          <select ng-init="main.defaults.progressBarselected = main.defaults.barNames[0]" ng-model="main.defaults.progressBarselected" class="progressbar-dropdown">
+            <option ng-repeat="option in main.defaults.barNames track by $index" val="{{option}}">{{option}}</option>
           </select>
         </div>
         <div class="col-md-8 col-sm-8">
-          <button ng-repeat="btnVal in settings.buttons track by $index" ng-click="btnClick(btnVal)" class="btn btn-default" type="submit">{{btnVal}}</button>
+          <button ng-repeat="btnVal in main.settings.buttons track by $index" ng-click="main.btnClick(btnVal)" class="btn btn-default" type="submit">{{btnVal}}</button>
         </div>
         <div class="clearfix"></div>
       </div>
